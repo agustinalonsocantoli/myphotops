@@ -1,0 +1,42 @@
+@use '../base/variables' as v;
+
+.home {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .home__title {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        font-family: v.$concert-one;
+
+        .title__one {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+
+            color: v.$green;
+            font-size: 70px;
+        }
+
+        .title__two {
+            grid-column: 1 / 3;
+            grid-row: 2 / 3;
+
+            color: v.$green;
+            font-size: 70px;
+        }
+
+        .title__three {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+            align-self: center;
+            padding: 5% 0 0 10%;
+
+            color: v.$blue;
+            font-size: 50px;
+        }
+    }
+
+}

@@ -1,0 +1,31 @@
+@use '../base/variables' as v;
+
+.footer {
+    width: 100%;
+    background: v.$blue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5%;
+    margin-top: 20px;
+
+    .footer__text {
+        text-align: center;
+        font-family: v.$raleway;
+
+        h4 {
+            font-weight: 700;
+        }
+
+        p {
+            font-weight: 400;
+            font-size: 12px;
+        }   
+    }
+
+    .footer__icons{
+        a {
+            padding:0px 30px;
+        }
+    }
+}
