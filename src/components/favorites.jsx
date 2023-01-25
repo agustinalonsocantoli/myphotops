@@ -44,7 +44,7 @@ export const MyFavoritesComponent = () => {
         <div>
             <section className="favorite">
                     {itemFav.map((image) => (
-                        <div className='favorite__container'>
+                        <div className='favorite__container' key={image.title}>
                             <img
                             src={`${image.img}?w=248&fit=crop&auto=format`}
                             srcSet={`${image.img}?w=248&fit=crop&auto=format&dpr=2 1.6x`}
@@ -62,19 +62,16 @@ export const MyFavoritesComponent = () => {
                                 </div>
 
                                 <div className='favorite__icons'>
-                                    <IconButton sx={{ color: 'black' }}>
-                                        <ArrowCircleDownIcon sx={{fontSize: 20}}
-                                        onClick={donwloadImage}/>
+                                    <IconButton onClick={donwloadImage} sx={{ color: 'black' }}>
+                                        <ArrowCircleDownIcon sx={{fontSize: 20}}/>
                                     </IconButton>
 
-                                    <IconButton sx={{ color: 'black'}}>
-                                        <InfoIcon sx={{fontSize: 20}}
-                                        onClick={editImage}/>
+                                    <IconButton onClick={editImage} sx={{ color: 'black'}}>
+                                        <InfoIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                     
-                                    <IconButton sx={{ color: 'black' }}>
-                                        <DeleteForeverIcon sx={{fontSize: 20}}
-                                        onClick={deleteImage}/>
+                                    <IconButton onClick={deleteImage} sx={{ color: 'black' }}>
+                                        <DeleteForeverIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                 </div>
                             </div>

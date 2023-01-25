@@ -6,8 +6,8 @@ import { HomeComponent } from './pages/home';
 import { SearchComponent } from './pages/search';
 import { FavoriteComponent } from './pages/favorite';
 
-
 function App() {
+
   return (
     <HashRouter>
       <HeaderComponent />
