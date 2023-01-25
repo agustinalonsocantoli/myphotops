@@ -1,19 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { itemData } from '../JSON/images';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import { itemLoad } from '../JSON/img';
 
 export const ImageComponent = () => {
     const [ favorite, setFavorite ] = useState(false);
+    const [ confirm, setConfirm] = useState(false);
+
+    const handleClick = () => {
+        setFavorite(prev => !prev);
+        setConfirm(true)
+    }
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setConfirm(false)
+        }, 1000)
+
+        return () => {
+            clearTimeout(timeout)
+        }
+    }, [confirm])
 
     return (
         <section className='images'>
             <ImageList cols={4} style={{gap: 10}}>
-                {itemData.map((item) => (
+                {itemLoad.map((item) => (
                     <ImageListItem key={item.img}>
                         <img
                             src={`${item.img}?w=248&fit=crop&auto=format`}
@@ -35,6 +52,7 @@ export const ImageComponent = () => {
                             actionIcon={
                                 <IconButton
                                 sx={{ color: 'red' }}
+                                onClick={handleClick}
                                 >
                                 {favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                                 </IconButton>
@@ -44,6 +62,14 @@ export const ImageComponent = () => {
                     </ImageListItem>
                 ))}
             </ImageList>
+
+
+            {confirm && 
+                <div className='save__fav'>
+                    <span>SAVED PHOTO</span>
+                    <DoneAllIcon sx={{color: '#6EC7B3', fontSize: 60}}/>
+                </div>
+            }
         </section>
       );
     }

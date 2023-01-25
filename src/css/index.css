@@ -74,6 +74,7 @@ li {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  min-height: 550px;
 }
 .home .home__title {
   display: grid;
@@ -106,9 +107,201 @@ li {
   margin: 30px;
 }
 
+.search__header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+.search__header .header__title {
+  display: flex;
+  gap: 5px;
+}
+.search__header .header__title h2 {
+  color: #5D86A3;
+  text-decoration: underline;
+  font-family: "Raleway", sans-serif;
+  font-weight: 900;
+}
+.search__header .header__title h2:nth-child(2) {
+  color: #6EC7B3;
+}
+.search__header .header__input {
+  width: 40%;
+}
+.search__header button {
+  width: 12%;
+  border-radius: 50px;
+  color: #000000;
+  background: #6EC7B3;
+  padding: 3px;
+}
+.search__header button:hover {
+  background: #5D86A3;
+}
+
+.search__btn {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+}
+.search__btn button {
+  border-radius: 70px;
+  background: #5D86A3;
+  color: #000000;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  width: 12%;
+}
+.search__btn button:hover {
+  background: #6EC7B3;
+}
+
 .search__pages {
   display: flex;
   justify-content: center;
+}
+
+.save__fav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 25%;
+  height: 25%;
+  background: #5D86A3;
+  border-radius: 70px;
+  z-index: 90;
+}
+.save__fav span {
+  color: #FFFFFF;
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.favorite {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  padding: 0px 5%;
+  gap: 20px;
+}
+.favorite .favorite__container {
+  border: 3px double #5D86A3;
+  position: relative;
+}
+.favorite .favorite__container .favorite__detail {
+  display: flex;
+}
+.favorite .favorite__container .favorite__detail .favorite__text {
+  text-align: left;
+}
+.favorite .favorite__container .favorite__detail .favorite__text p {
+  padding: 5px;
+}
+.favorite .favorite__container .favorite__detail .favorite__icons {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  flex-direction: column;
+}
+.favorite .favorite__delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 23%;
+  height: 22%;
+  background: #5D86A3;
+  border-radius: 70px;
+  z-index: 90;
+}
+.favorite .favorite__delete .icons {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  cursor: pointer;
+}
+.favorite .favorite__delete .done:hover, .favorite .favorite__delete .clear:hover {
+  transform: scale(1.3);
+  transition: all 0.4s ease;
+}
+.favorite .favorite__delete span {
+  color: #FFFFFF;
+  font-family: "Raleway", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.favorite .edit__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 30%;
+  height: 25%;
+  background: #5D86A3;
+  border-radius: 70px;
+  z-index: 90;
+}
+.favorite .edit__description h4 {
+  display: block;
+  width: 80%;
+  text-align: left;
+  padding-left: 2px;
+  margin-top: 20px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+.favorite .edit__description textarea {
+  resize: none;
+  width: 80%;
+  height: 50%;
+  padding: 10px;
+}
+.favorite .edit__description textarea:focus {
+  outline: none;
+}
+.favorite .edit__description .edit__btn {
+  display: flex;
+  justify-content: flex-end;
+  width: 75%;
+  gap: 20px;
+  margin: 10px 0px;
+}
+.favorite .edit__description .edit__btn span {
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  font-weight: 200;
+  cursor: pointer;
+}
+.favorite .edit__description .edit__btn span:hover {
+  transition: all 0.2s ease;
+  transform: scale(1.1);
 }
 
 /*# sourceMappingURL=index.css.map */

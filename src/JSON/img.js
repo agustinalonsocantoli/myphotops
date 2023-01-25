@@ -1,5 +1,5 @@
 
-export const itemData = [
+export const itemLoad = [
     {
       img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
       title: 'Breakfast',

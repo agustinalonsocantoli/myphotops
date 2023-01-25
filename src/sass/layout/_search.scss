@@ -1,4 +1,92 @@
+@use '../base/variables' as v;
+
+.search__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+
+    .header__title{
+        display: flex;
+        gap: 5px;
+
+        h2 {
+            color: v.$blue;
+            text-decoration: underline;
+            font-family: v.$raleway;
+            font-weight: 900;
+        }
+    
+        h2:nth-child(2) {
+            color: v.$green;
+        }
+    }
+
+    .header__input {
+        width: 40%;
+    }
+
+    button {
+        width: 12%;
+        border-radius: 50px;
+        color: v.$black;
+        background: v.$green;
+        padding: 3px;
+    }
+
+    button:hover {
+        background: v.$blue;
+    }
+}
+
+.search__btn {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+
+    button {
+        border-radius: 70px;
+        background: v.$blue;
+        color: v.$black;
+        font-family: v.$raleway;
+        font-weight: 500;
+        font-size: 12px;
+        width: 12%;
+    }
+
+    button:hover {
+        background: v.$green;
+    }
+}
+
 .search__pages {
     display: flex;
     justify-content: center;
+}
+
+.save__fav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: fixed;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 25%;
+    height: 25%;
+    background: v.$blue;
+    border-radius: 70px;
+    z-index: 90;
+
+    span {
+        color: v.$white;
+        font-family: v.$raleway;
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
 }
