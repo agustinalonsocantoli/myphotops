@@ -1,12 +1,19 @@
+import { useState } from "react";
 import { ImageComponent } from "../components/images";
 import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 
 export const SearchComponent = () => {
+    const [ input, setInput ] = useState('')
+
+    const handleChange = ({target}) => {
+        setInput(target.value);
+    }
+    
     return (
         <div>
             <section className="search">
@@ -17,31 +24,35 @@ export const SearchComponent = () => {
                         <h2>PHOTO</h2>
                     </div>
 
-                    <TextField className="header__input"
-                        placeholder="Search"
-                        InputProps={{ startAdornment: (
-                            <InputAdornment position="start">
-                            <SearchIcon />
-                            </InputAdornment>
-                        ),}}
-                        variant="standard"
-                    />
+                    <form className="search__form">
+                        <TextField className="header__input"
+                            onChange={handleChange}
+                            value={input}
+                            placeholder="Search"
+                            InputProps={{ startAdornment: (
+                                <InputAdornment position="start">
+                                <SearchIcon />
+                                </InputAdornment>
+                            ),}}
+                            variant="standard"
+                        />
 
-                    <Button variant="contained">
-                        <CheckIcon/>
-                    </Button>
+                        <Button variant="contained">
+                            <ClearIcon onClick={() => setInput('')} />
+                        </Button>
+                    </form>
                 </div>
 
                 <div className="search__btn">
-                    <Button variant="contained">NATURE</Button>
-                    <Button variant="contained">ANIMALS</Button>
-                    <Button variant="contained">SPACE</Button>
-                    <Button variant="contained">CITIES</Button>
-                    <Button variant="contained">COLORS</Button>
+                    <Button onClick={() => setInput('nature')} variant="contained">NATURE</Button>
+                    <Button onClick={() => setInput('animals')} variant="contained">ANIMALS</Button>
+                    <Button onClick={() => setInput('space')} variant="contained">SPACE</Button>
+                    <Button onClick={() => setInput('cities')} variant="contained">CITIES</Button>
+                    <Button onClick={() => setInput('colors')} variant="contained">COLORS</Button>
                 </div>
 
                 <div className="search__images">
-                    <ImageComponent />
+                    <ImageComponent query={input} />
                 </div>
 
                 <div className="search__pages">

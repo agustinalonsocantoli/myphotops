@@ -7,6 +7,28 @@
     gap: 30px;
     margin-bottom: 20px;
 
+    .search__form {
+        display: flex;
+        width: 50%;
+        gap: 20px;
+
+        .header__input {
+            width: 80%;
+        }
+    
+        button {
+            width: 20%;
+            border-radius: 50px;
+            color: v.$black;
+            background: v.$green;
+            padding: 3px;
+        }
+    
+        button:hover {
+            background: v.$blue;
+        }
+    }
+
     .header__title{
         display: flex;
         gap: 5px;
@@ -21,22 +43,6 @@
         h2:nth-child(2) {
             color: v.$green;
         }
-    }
-
-    .header__input {
-        width: 40%;
-    }
-
-    button {
-        width: 12%;
-        border-radius: 50px;
-        color: v.$black;
-        background: v.$green;
-        padding: 3px;
-    }
-
-    button:hover {
-        background: v.$blue;
     }
 }
 
