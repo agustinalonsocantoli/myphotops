@@ -11,8 +11,13 @@
         border: 3px double v.$blue;
         position: relative;
 
+        .favorite__img {
+            min-height: 450px;
+        }
+
         .favorite__detail {
             display: flex;
+            align-items: flex-end;
 
             .favorite__text {
                 text-align: left;

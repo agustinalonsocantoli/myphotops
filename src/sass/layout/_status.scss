@@ -1,0 +1,20 @@
+@use '../base/variables' as v;
+
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+
+    img {
+        width: 60%;
+    }
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10%;
+    min-height: 500px;
+}

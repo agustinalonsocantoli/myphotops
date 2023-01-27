@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { itemFav } from '../JSON/fav'
+import { useDispatch, useSelector } from 'react-redux';
+import { removePhoto, editPhotoDescription } from '../features/favoritePhotosSlice';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import InfoIcon from '@mui/icons-material/Info';
@@ -9,15 +10,23 @@ import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 
 export const MyFavoritesComponent = () => {
+    const dispatch = useDispatch();
+    const { favoritePhotos } = useSelector(state => state.favoritePhotos)
+
     const [ confirmDelete, setConfirmDelete ] = useState(false);
     const [ edit, setEdit ] = useState(false);
+    const [ newDescription, setNewDescription ] = useState('')
 
-    const deleteImage = () => {
+    const deleteFav = () => {
         setConfirmDelete(true)
     }
 
     const deleteTrue = () => {
         setConfirmDelete(false)
+        
+        favoritePhotos.map(item => (
+            dispatch(removePhoto(item.id))
+        ))
     }
 
     const deleteFalse = () => {
@@ -28,7 +37,16 @@ export const MyFavoritesComponent = () => {
         setEdit(true)
     }
 
+    const handleChange = ({target}) => {
+        setNewDescription(target.value)
+    }
+
     const editSave = () => {
+        dispatch(editPhotoDescription({
+            id: favoritePhotos.id,
+            description: newDescription
+        }))
+
         setEdit(false)
     }
 
@@ -36,41 +54,46 @@ export const MyFavoritesComponent = () => {
         setEdit(false)
     }
 
-    const donwloadImage = () => {
-        alert('DESCARGANDO')
+    // Primer letra en mayuscula
+    const setCapitalize = (text) => {
+        return text.charAt(0).toUpperCase() + text.slice(1);
     }
 
     return (
         <div>
             <section className="favorite">
-                    {itemFav.map((image) => (
-                        <div className='favorite__container' key={image.title}>
-                            <img
-                            src={`${image.img}?w=248&fit=crop&auto=format`}
-                            srcSet={`${image.img}?w=248&fit=crop&auto=format&dpr=2 1.6x`}
-                            alt={image.title}
-                            loading="lazy"
-                            />
+                    {favoritePhotos.map((image) => (
+                        <div className='favorite__container' key={image.id}>
+                            <div className='favorite__img'>
+                                <img
+                                    src={`${image.src}&w=248&fit=crop&auto=format`}
+                                    srcSet={`${image.src}&w=248&fit=crop&auto=format&dpr=2 1.6x`}
+                                    alt={image.name}
+                                    loading="lazy"
+                                />
+                            </div>
 
                             <div className='favorite__detail'>
                                 <div className='favorite__text'>
-                                    <p>{image.desciption}</p>
-                                    <p>{image.time}</p>
+                                    <p>{setCapitalize(image.description)}</p>
+                                    <p>{image.date}</p>
                                     <p>{image.width}</p>
                                     <p>{image.height}</p>
                                     <p>{image.likes} <FavoriteIcon sx={{fontSize: 10}}/></p>
                                 </div>
 
                                 <div className='favorite__icons'>
-                                    <IconButton onClick={donwloadImage} sx={{ color: 'black' }}>
-                                        <ArrowCircleDownIcon sx={{fontSize: 20}}/>
+                                    <IconButton>
+                                        <a href={image.donwload} target='_blank' rel='noopener noreferrer' style={{ color: 'black' }}>
+                                            <ArrowCircleDownIcon sx={{fontSize: 20}} />
+                                        </a>
                                     </IconButton>
 
                                     <IconButton onClick={editImage} sx={{ color: 'black'}}>
                                         <InfoIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                     
-                                    <IconButton onClick={deleteImage} sx={{ color: 'black' }}>
+                                    <IconButton onClick={deleteFav} sx={{ color: 'black' }}>
                                         <DeleteForeverIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                 </div>
@@ -93,7 +116,7 @@ export const MyFavoritesComponent = () => {
                     <div className='edit__description'>
                         <h4>New Description</h4>
 
-                        <textarea></textarea>
+                        <textarea value={newDescription} onChange={handleChange}></textarea>
 
                         <div className='edit__btn'>
                             <span onClick={editCancel}>Cancel</span>

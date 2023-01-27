@@ -205,8 +205,12 @@ li {
   border: 3px double #5D86A3;
   position: relative;
 }
+.favorite .favorite__container .favorite__img {
+  min-height: 450px;
+}
 .favorite .favorite__container .favorite__detail {
   display: flex;
+  align-items: flex-end;
 }
 .favorite .favorite__container .favorite__detail .favorite__text {
   text-align: left;
@@ -304,6 +308,24 @@ li {
 .favorite .edit__description .edit__btn span:hover {
   transition: all 0.2s ease;
   transform: scale(1.1);
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5%;
+}
+.error img {
+  width: 60%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10%;
+  min-height: 500px;
 }
 
 /*# sourceMappingURL=index.css.map */

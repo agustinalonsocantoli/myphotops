@@ -1,52 +1,54 @@
 import { useState, useEffect } from 'react';
-// import { getPhotos } from '../API/getPhotos'
 import { getPhotoApi } from '../features/photosSlice';
-
 import { useDispatch, useSelector } from 'react-redux';
+import { addPhoto } from '../features/favoritePhotosSlice';
+import { ErrorComponent } from './error';
 
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
-import Box from '@mui/material/Box';
-import LinearProgress from '@mui/material/LinearProgress';
+import CircularProgress from '@mui/material/CircularProgress';
 
-export const ImageComponent = ({ query }) => {
 
-    const { list } = useSelector(state => state.photos)
+export const ImageComponent = ({ query, page }) => {
+
+    // Importamos del estado la lista de fotos traidas de la API
+    const { list, loading, error } = useSelector(state => state.photos)
     const dispatch = useDispatch();
-
-
+    
     useEffect(() => {
-        dispatch(getPhotoApi(query))
-    }, [query, dispatch])
+        dispatch(getPhotoApi(query, page))
+    }, [query, page, dispatch])
 
+    // Importamos acction para agregar a favoritos
+    const today = new Date();
+    const date = today.toLocaleString();
 
+    const addPhotoFav = () => {
+        list.map(item => (
+            dispatch(addPhoto({
+                id: item.id,
+                name: item.user.name,
+                description: item.alt_description,
+                src: item.urls.regular,
+                likes: item.likes,
+                width: item.width,
+                height: item.height,
+                donwload: item.urls.small_s3,
+                date: date
+            }))
+        ))
+    };
 
-
-    // const [ photos, setPhotos ] = useState([]);
-
-    // useEffect(() => {
-    //     const setAllPhotos = async () => {
-    //         const allPhotos = await getPhotos(query)
-
-    //         setPhotos(allPhotos)
-    //     }
-
-    //     setAllPhotos();
-    // }, [query])
-
-
-    const [ favorite, setFavorite ] = useState(false);
+    // Confirmacion de guardado en favoritos 
     const [ confirm, setConfirm] = useState(false);
-    const [ loading, setLoading ] = useState(false);
 
     const handleFavorite = () => {
-        setFavorite(prev => !prev);
         setConfirm(true)
+        addPhotoFav()
     }
 
     useEffect(() => {
@@ -59,20 +61,24 @@ export const ImageComponent = ({ query }) => {
         }
     }, [confirm])
 
-
-    return (
-        <section className='images'>
-            {loading ? 
-                <Box sx={{ width: '100%' }}>
-                    <LinearProgress />
-                </Box>
-                :
+    // Mostramos el return correspondiente al Status
+    if (loading && !error) {
+        return (
+            <div className='loading'>
+                <CircularProgress color="info" size={150} />
+            </div>
+        )
+    } else if (error && !loading) {
+        return <ErrorComponent />
+    } else {
+        return (
+            <section className='images'>
                 <ImageList cols={5} style={{gap: 10}}>
-
+    
                     {list.map((item) => (
-
+    
                         <ImageListItem key={item.id}>
-
+    
                             <img
                                 src={`${item.urls.regular}?w=248&fit=crop&auto=format`}
                                 srcSet={`${item.urls.regular}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -80,7 +86,7 @@ export const ImageComponent = ({ query }) => {
                                 loading="lazy"
                                 style={{borderRadius: 20}}
                             />
-
+    
                             <ImageListItemBar
                                 sx={{
                                     background:
@@ -93,23 +99,23 @@ export const ImageComponent = ({ query }) => {
                                     sx={{ color: 'red' }}
                                     onClick={handleFavorite}
                                     >
-                                    {favorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                                    <FavoriteIcon />
                                     </IconButton>
                                 }
                             />
                         </ImageListItem>
                     ))}
-
+    
                 </ImageList>
-            }
-
-            {confirm && 
-                <div className='save__fav'>
-                    <span>SAVED PHOTO</span>
-                    <DoneAllIcon sx={{color: '#6EC7B3', fontSize: 60}}/>
-                </div>
-            }
-            
-        </section>
-    );
+                
+                {confirm && 
+                    <div className='save__fav'>
+                        <span>SAVED PHOTO</span>
+                        <DoneAllIcon sx={{color: '#6EC7B3', fontSize: 60}}/>
+                    </div>
+                }
+                
+            </section>
+        );
+    }
 }

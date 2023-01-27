@@ -8,10 +8,17 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 
 export const SearchComponent = () => {
-    const [ input, setInput ] = useState('')
 
-    const handleChange = ({target}) => {
+    const [ input, setInput ] = useState('');
+
+    const handleChangeInput = ({target}) => {
         setInput(target.value);
+    }
+
+    const [ page, setPage ] = useState(1);
+
+    const handleChangePage = (e, value) => {
+        setPage(value);
     }
     
     return (
@@ -26,7 +33,7 @@ export const SearchComponent = () => {
 
                     <form className="search__form">
                         <TextField className="header__input"
-                            onChange={handleChange}
+                            onChange={handleChangeInput}
                             value={input}
                             placeholder="Search"
                             InputProps={{ startAdornment: (
@@ -52,11 +59,11 @@ export const SearchComponent = () => {
                 </div>
 
                 <div className="search__images">
-                    <ImageComponent query={input} />
+                    <ImageComponent query={input} page={page} />
                 </div>
 
                 <div className="search__pages">
-                    <Pagination count={10} variant="outlined" color="primary" />
+                    <Pagination page={page} onChange={handleChangePage} count={10} variant="outlined" color="primary" />
                 </div>
             </section>
         </div>
