@@ -1,4 +1,5 @@
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 
 .favorite {
     display: grid;
@@ -6,6 +7,24 @@
     text-align: center;
     padding: 0px 5%;
     gap: 20px;
+
+    
+    @include m.desktopL {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    @include m.desktopM {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @include m.desktopS {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @include m.tablet {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include m.phone {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
     
     .favorite__container {
         border: 3px double v.$blue;
@@ -131,4 +150,9 @@
             }
         }
     }
+}
+
+.order {
+    text-align: center;
+    margin: 10px 0 20px 0;
 }

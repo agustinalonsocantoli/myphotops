@@ -1,10 +1,23 @@
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 
 .home {
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 550px;
+
+    @include m.phone {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    @include m.tablet {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
     .home__title {
         display: grid;
@@ -19,6 +32,10 @@
 
             color: v.$green;
             font-size: 70px;
+
+            @include m.phone {
+                font-size: 50px;
+            }
         }
 
         .title__two {
@@ -27,6 +44,10 @@
 
             color: v.$green;
             font-size: 70px;
+
+            @include m.phone {
+                font-size: 50px;
+            }
         }
 
         .title__three {
@@ -37,7 +58,24 @@
 
             color: v.$blue;
             font-size: 50px;
+
+            @include m.phone {
+                font-size: 35px;
+                padding: 7% 0 0 7%;
+            }
         }
     }
 
+}
+
+.home__collage {
+    @include m.phone {
+        margin: auto;
+        width: 95%;
+    }
+
+    @include m.tablet {
+        margin: auto;
+        margin-bottom: 20px;
+    }
 }
