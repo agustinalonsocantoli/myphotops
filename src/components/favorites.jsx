@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePhoto, editPhotoDescription } from '../features/favoritePhotosSlice';
+import { setOrder } from '../function/setOrder';
+
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import InfoIcon from '@mui/icons-material/Info';
@@ -9,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import DoneIcon from '@mui/icons-material/Done';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export const MyFavoritesComponent = () => {
+export const MyFavoritesComponent = ({ order }) => {
     const dispatch = useDispatch();
     const { favoritePhotos } = useSelector(state => state.favoritePhotos)
 
@@ -57,13 +59,25 @@ export const MyFavoritesComponent = () => {
 
     // Primer letra en mayuscula
     const setCapitalize = (text) => {
-        return text.charAt(0).toUpperCase() + text.slice(1);
+        if(typeof(text) === 'string') {
+            return text.charAt(0).toUpperCase() + text.slice(1);
+        } else {
+            return text
+        }
     }
+
+    //Ordenar favoritos
+    const [ orderList, setOrderList] = useState(favoritePhotos);
+
+    useEffect(() => {
+        setOrderList(setOrder(favoritePhotos, order))
+
+    }, [favoritePhotos, order])
 
     return (
         <div>
             <section className="favorite">
-                    {favoritePhotos.map((image) => (
+                    {orderList.map((image) => (
                         <div className='favorite__container' key={image.id}>
                             <div className='favorite__img'>
                                 <img
@@ -76,11 +90,11 @@ export const MyFavoritesComponent = () => {
 
                             <div className='favorite__detail'>
                                 <div className='favorite__text'>
-                                    <p>{setCapitalize(image.description)}</p>
+                                    <p>Description: {image.description === '' ? '- - - -' : setCapitalize(image.description)}</p>
                                     <p>{image.date}</p>
-                                    <p>{image.width}</p>
-                                    <p>{image.height}</p>
-                                    <p>{image.likes} <FavoriteIcon sx={{fontSize: 10}}/></p>
+                                    <p>Widhth: {image.width}px</p>
+                                    <p>Height: {image.height}px</p>
+                                    <p>Likes: {image.likes} <FavoriteIcon sx={{fontSize: 10}}/></p>
                                 </div>
 
                                 <div className='favorite__icons'>
