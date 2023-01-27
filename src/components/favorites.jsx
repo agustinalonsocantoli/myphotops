@@ -16,25 +16,26 @@ export const MyFavoritesComponent = () => {
     const [ confirmDelete, setConfirmDelete ] = useState(false);
     const [ edit, setEdit ] = useState(false);
     const [ newDescription, setNewDescription ] = useState('')
+    const [ id, setId ] = useState('');
 
-    const deleteFav = () => {
+    const deleteFav = (value) => {
         setConfirmDelete(true)
+        setId(value)
     }
 
     const deleteTrue = () => {
+
         setConfirmDelete(false)
-        
-        favoritePhotos.map(item => (
-            dispatch(removePhoto(item.id))
-        ))
+        dispatch(removePhoto(id))
     }
 
     const deleteFalse = () => {
         setConfirmDelete(false)
     }
 
-    const editImage = () => {
+    const editImage = (value) => {
         setEdit(true)
+        setId(value)
     }
 
     const handleChange = ({target}) => {
@@ -43,7 +44,7 @@ export const MyFavoritesComponent = () => {
 
     const editSave = () => {
         dispatch(editPhotoDescription({
-            id: favoritePhotos.id,
+            id: id,
             description: newDescription
         }))
 
@@ -89,11 +90,11 @@ export const MyFavoritesComponent = () => {
                                         </a>
                                     </IconButton>
 
-                                    <IconButton onClick={editImage} sx={{ color: 'black'}}>
+                                    <IconButton onClick={() => editImage(image.id)} sx={{ color: 'black'}}>
                                         <InfoIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                     
-                                    <IconButton onClick={deleteFav} sx={{ color: 'black' }}>
+                                    <IconButton onClick={() => deleteFav(image.id)} sx={{ color: 'black' }}>
                                         <DeleteForeverIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                 </div>
