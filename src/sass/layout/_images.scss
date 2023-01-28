@@ -1,3 +1,6 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
 .images{
     margin: 30px;
 }

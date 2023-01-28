@@ -12,7 +12,6 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 
 export const ImageComponent = (props) => {
-
     const dispatch = useDispatch();
 
     // Importamos acction para agregar a favoritos
@@ -55,12 +54,12 @@ export const ImageComponent = (props) => {
     return (
         <section className='images'>
             <ImageList cols={5} style={{gap: 10}}>
-                <ImageListItem>
-
+                {props.list.map((item) => (
+                <ImageListItem key={item.id}>
                     <img
-                        src={`${props.src}?w=248&fit=crop&auto=format`}
-                        srcSet={`${props.src}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                        alt={props.name}
+                        src={`${item.urls.regular}?w=248&fit=crop&auto=format`}
+                        srcSet={`${item.urls.regular}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        alt={item.user.name}
                         loading="lazy"
                         style={{borderRadius: 20}}
                     />
@@ -82,6 +81,7 @@ export const ImageComponent = (props) => {
                         }
                     />
                 </ImageListItem>
+                ))}
             </ImageList>
             
             {confirm && 

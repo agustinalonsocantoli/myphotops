@@ -90,6 +90,7 @@ export const SearchComponent = () => {
                                 width={item.width}
                                 height={item.height} 
                                 donwload={item.urls.small_s3}
+                                list={list}
                             />
                         ))}
                     </div>

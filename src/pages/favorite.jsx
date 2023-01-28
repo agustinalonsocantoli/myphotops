@@ -18,7 +18,7 @@ export const FavoriteComponent = () => {
         <section>
             <div className="order">
                 <Box>
-                    <FormControl sx={{width: '70%'}}>
+                    <FormControl className="order__form">
                         <InputLabel>Order By</InputLabel>
                         <Select
                             value={order}

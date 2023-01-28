@@ -153,6 +153,26 @@
 }
 
 .order {
-    text-align: center;
+    display: flex;
+    justify-content: flex-end;
     margin: 10px 0 20px 0;
+    padding-right: 3%;
+
+    @include m.desktopL {
+        padding-right: 5%;
+    }
+    @include m.tablet {
+        justify-content: center;
+    }
+
+    .order__form {
+        width: 400px;
+
+        @include m.desktopL {
+            width: 900px;
+        }
+        @include m.tablet {
+            width: 300px;
+        }
+    }
 }

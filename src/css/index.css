@@ -425,8 +425,33 @@ li {
 }
 
 .order {
-  text-align: center;
+  display: flex;
+  justify-content: flex-end;
   margin: 10px 0 20px 0;
+  padding-right: 3%;
+}
+@media (min-width: 1900px) {
+  .order {
+    padding-right: 5%;
+  }
+}
+@media (max-width: 991.98px) {
+  .order {
+    justify-content: center;
+  }
+}
+.order .order__form {
+  width: 400px;
+}
+@media (min-width: 1900px) {
+  .order .order__form {
+    width: 900px;
+  }
+}
+@media (max-width: 991.98px) {
+  .order .order__form {
+    width: 300px;
+  }
 }
 
 .error {
