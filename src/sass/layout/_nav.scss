@@ -5,6 +5,16 @@
     width: 96%;
     margin: 20px auto;
     border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        padding: 0 3%;
+        font-family: v.$raleway;
+        font-weight: 100;
+        font-size: 40px;
+    }
 
     ul {
         display: flex;
@@ -29,12 +39,19 @@
 
 .nav__close {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     background: v.$blue;
     width: 95%;
     margin: 15px auto;
     padding: 2% 5%;
     border-radius: 10px;
+
+    h1 {
+        padding: 0 3%;
+        font-family: v.$raleway;
+        font-weight: 100;
+        font-size: 25px;
+    }
 }
 
 .nav__open {
@@ -44,6 +61,10 @@
     padding: 2% 5%;
     border-radius: 10px;
     text-align: center;
+
+    h1 {
+        display: none;
+    }
 
     .icon-container {
         display: flex;

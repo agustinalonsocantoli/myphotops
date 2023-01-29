@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import CameraIcon from '@mui/icons-material/Camera';
 
 export const HeaderComponent = () => {
     const [ menu, setMenu ] = useState(true);
@@ -15,6 +16,9 @@ export const HeaderComponent = () => {
         return (
             <div>
                 <nav className="nav__desktop">
+                    <h1>
+                        <CameraIcon sx={{fontSize: 30}}/> | MyPhoTOPs
+                    </h1>
                     <ul>
                         <li><NavLink style={{color:"black"}} to={'/'}><HomeIcon sx={{ fontSize: 15 }} />HOME</NavLink></li>
                         <li><NavLink style={{color:"black"}} to={'/search'}><SearchIcon sx={{ fontSize: 15 }} /> SEARCH</NavLink></li>
@@ -28,6 +32,9 @@ export const HeaderComponent = () => {
             <div>
                 { menu ? 
                 <nav className="nav__close">
+                    <h1>
+                        <CameraIcon sx={{fontSize: 15}}/> | MyPhoTOPs
+                    </h1>
                     <MenuIcon onClick={() => setMenu(false)} /> 
                 </nav>
                 :

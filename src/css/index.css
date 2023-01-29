@@ -32,6 +32,15 @@ li {
   width: 96%;
   margin: 20px auto;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav__desktop h1 {
+  padding: 0 3%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 100;
+  font-size: 40px;
 }
 .nav__desktop ul {
   display: flex;
@@ -53,12 +62,18 @@ li {
 
 .nav__close {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   background: #5D86A3;
   width: 95%;
   margin: 15px auto;
   padding: 2% 5%;
   border-radius: 10px;
+}
+.nav__close h1 {
+  padding: 0 3%;
+  font-family: "Raleway", sans-serif;
+  font-weight: 100;
+  font-size: 25px;
 }
 
 .nav__open {
@@ -68,6 +83,9 @@ li {
   padding: 2% 5%;
   border-radius: 10px;
   text-align: center;
+}
+.nav__open h1 {
+  display: none;
 }
 .nav__open .icon-container {
   display: flex;
