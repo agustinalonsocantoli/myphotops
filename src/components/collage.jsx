@@ -12,7 +12,7 @@ function srcset(image, size, rows = 1, cols = 1) {
 export const CollageComponent = () => {
   return (
     <ImageList  
-        // sx={{ width: 700, height: 550 }}
+        className='home__collage'
         variant="quilted"
         cols={4}
         rowHeight={121}

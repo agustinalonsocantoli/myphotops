@@ -12,7 +12,6 @@ import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 
 export const ImageComponent = (props) => {
-
     const dispatch = useDispatch();
 
     // Importamos acction para agregar a favoritos
@@ -51,10 +50,9 @@ export const ImageComponent = (props) => {
         }
     }, [confirm])
 
-
     return (
         <section className='images'>
-            <ImageList cols={5} style={{gap: 10}}>
+            <ImageList>
                 <ImageListItem>
 
                     <img

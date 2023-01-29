@@ -1,6 +1,6 @@
 @use '../base/variables' as v;
 
-.nav {
+.nav__desktop {
     background: v.$blue;
     width: 96%;
     margin: 20px auto;
@@ -18,7 +18,44 @@
         li {
             display: flex;
             align-items: center;
-            gap: 2px;
         }
+
+        a {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.nav__close {
+    display: flex;
+    justify-content: flex-end;
+    background: v.$blue;
+    width: 95%;
+    margin: 15px auto;
+    padding: 2% 5%;
+    border-radius: 10px;
+}
+
+.nav__open {
+    background: v.$blue;
+    width: 95%;
+    margin: 15px auto;
+    padding: 2% 5%;
+    border-radius: 10px;
+    text-align: center;
+
+    .icon-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 2px;
+    }
+
+    ul li {
+        margin-bottom: 5px;
+    }
+
+    ul li:hover {
+        background: rgb(255 255 255 / 40%);
     }
 }
