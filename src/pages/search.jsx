@@ -30,10 +30,11 @@ export const SearchComponent = () => {
     // Importamos del estado la lista de fotos traidas de la API
     const { list, loading, error } = useSelector(state => state.photos)
     const dispatch = useDispatch();
-    
+
     useEffect(() => {
         dispatch(getPhotoApi(input, page))
-    }, [input, page, dispatch])
+
+    }, [input, page, dispatch]);
     
     return (
         <div>

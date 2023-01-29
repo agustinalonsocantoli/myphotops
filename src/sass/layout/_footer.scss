@@ -8,7 +8,11 @@
     justify-content: space-around;
     align-items: center;
     padding: 0.5%;
-    margin-top: 20px;
+    margin-top: auto;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 
     .footer__text {
         text-align: center;

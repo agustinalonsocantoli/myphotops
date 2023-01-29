@@ -50,16 +50,15 @@ export const ImageComponent = (props) => {
         }
     }, [confirm])
 
-
     return (
         <section className='images'>
-            <ImageList cols={5} style={{gap: 10}}>
-                {props.list.map((item) => (
-                <ImageListItem key={item.id}>
+            <ImageList>
+                <ImageListItem>
+
                     <img
-                        src={`${item.urls.regular}?w=248&fit=crop&auto=format`}
-                        srcSet={`${item.urls.regular}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                        alt={item.user.name}
+                        src={`${props.src}?w=248&fit=crop&auto=format`}
+                        srcSet={`${props.src}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        alt={props.name}
                         loading="lazy"
                         style={{borderRadius: 20}}
                     />
@@ -81,7 +80,6 @@ export const ImageComponent = (props) => {
                         }
                     />
                 </ImageListItem>
-                ))}
             </ImageList>
             
             {confirm && 
