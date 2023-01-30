@@ -16,11 +16,25 @@
     @include m.phone {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    .images {
+        width: 90%;
+        height: 400px;
+        min-width: 250px;
+        text-align: center;
+        position: relative;
+    
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    
+        .btn__img {
+            position: absolute;
+            right: 1%;
+            bottom: 1%;
+        }
+    }
 }
 
-.images {
-    ul{
-        display: block;
-    }
-    
-}

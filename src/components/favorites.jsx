@@ -5,7 +5,7 @@ import { setOrder } from '../function/setOrder';
 
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import InfoIcon from '@mui/icons-material/Info';
+import EditIcon from '@mui/icons-material/Edit';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import IconButton from '@mui/material/IconButton';
 import DoneIcon from '@mui/icons-material/Done';
@@ -105,7 +105,7 @@ export const MyFavoritesComponent = ({ order }) => {
                                     </IconButton>
 
                                     <IconButton onClick={() => editImage(image.id)} sx={{ color: 'black'}}>
-                                        <InfoIcon sx={{fontSize: 20}}/>
+                                        <EditIcon sx={{fontSize: 20}}/>
                                     </IconButton>
                                     
                                     <IconButton onClick={() => deleteFav(image.id)} sx={{ color: 'black' }}>

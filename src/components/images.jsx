@@ -2,12 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPhoto } from '../features/favoritePhotosSlice';
 
-
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 
 
@@ -52,35 +48,21 @@ export const ImageComponent = (props) => {
 
     return (
         <section className='images'>
-            <ImageList>
-                <ImageListItem>
+            <img
+                src={`${props.src}`}
+                srcSet={`${props.src}`}
+                alt={props.name}
+                loading="lazy"
+                style={{borderRadius: 20}}
+            />
 
-                    <img
-                        src={`${props.src}?w=248&fit=crop&auto=format`}
-                        srcSet={`${props.src}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                        alt={props.name}
-                        loading="lazy"
-                        style={{borderRadius: 20}}
-                    />
-
-                    <ImageListItemBar
-                        sx={{
-                            background:
-                            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, ' +
-                            'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-                            borderRadius: '0px 0px 20px 20px'
-                        }}
-                        actionIcon={
-                            <IconButton
-                            sx={{ color: 'red' }}
-                            onClick={handleFavorite}
-                            >
-                            <FavoriteIcon />
-                            </IconButton>
-                        }
-                    />
-                </ImageListItem>
-            </ImageList>
+            <IconButton
+            className='btn__img'
+                sx={{ color: 'red' }}
+                onClick={handleFavorite}
+            >
+                <FavoriteBorderIcon />
+            </IconButton>
             
             {confirm && 
                 <div className='save__fav'>
