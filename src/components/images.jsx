@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { addPhoto } from '../features/favoritePhotosSlice';
 
 import IconButton from '@mui/material/IconButton';
@@ -61,6 +61,7 @@ export const ImageComponent = (props) => {
                 sx={{ color: 'red' }}
                 onClick={handleFavorite}
             >
+                { }
                 <FavoriteBorderIcon />
             </IconButton>
             

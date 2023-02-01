@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Pagination from '@mui/material/Pagination';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
-import TextField from '@mui/material/TextField';
+import ImageSearchIcon from '@mui/icons-material/ImageSearch';import 
+TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -17,8 +17,9 @@ export const SearchComponent = () => {
     
     const [ input, setInput ] = useState('');
 
-    const handleChangeInput = ({target}) => {
-        setInput(target.value);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setInput(e.target.search.value)
     }
 
     const [ page, setPage ] = useState(1);
@@ -34,7 +35,7 @@ export const SearchComponent = () => {
     useEffect(() => {
         dispatch(getPhotoApi(input, page))
 
-    }, [input, page, dispatch]);
+    }, [input, page, dispatch])
     
     return (
         <div>
@@ -46,10 +47,9 @@ export const SearchComponent = () => {
                         <h2>PHOTO</h2>
                     </div>
 
-                    <form className="search__form">
+                    <form className="search__form" onSubmit={handleSubmit}>
                         <TextField className="header__input"
-                            onChange={handleChangeInput}
-                            value={input}
+                            name='search'
                             placeholder="Search"
                             InputProps={{ startAdornment: (
                                 <InputAdornment position="start">
@@ -59,8 +59,8 @@ export const SearchComponent = () => {
                             variant="standard"
                         />
 
-                        <Button variant="contained">
-                            <ClearIcon onClick={() => setInput('')} />
+                        <Button variant="contained" type="submit">
+                            <ImageSearchIcon />
                         </Button>
                     </form>
                 </div>
